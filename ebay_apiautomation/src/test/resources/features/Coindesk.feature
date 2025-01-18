@@ -1,4 +1,4 @@
-@coindeskapi
+@Getcurrentprice
 Feature: Coindesk API Automation
 
   Scenario: Verify current price response of Bitcoin in different currencies

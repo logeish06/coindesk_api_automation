@@ -12,20 +12,21 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 public class TestContext {
-		
+
 	public Response response;
 	public Map<String, Object> session = new HashMap<String, Object>();
 	private static final String CONTENT_TYPE = PropertiesFile.getProperty("content.type");
-	
-	public RequestSpecification requestSetup() {	
-		RestAssured.reset();
-		Options options = Options.builder().logStacktrace().build();
-		RestAssuredConfig config = CurlRestAssuredConfigFactory.createConfig(options); 
-		RestAssured.baseURI = PropertiesFile.getProperty("baseUri");	
-		return RestAssured.given()
-				.config(config)
-				.filter(new RestAssuredRequestFilter())				
-				.contentType(CONTENT_TYPE)
-				.accept(CONTENT_TYPE);
-	} 
+
+	public RequestSpecification requestSetup() {
+			RestAssured.reset();
+			Options options = Options.builder().logStacktrace().build();
+			RestAssuredConfig config = CurlRestAssuredConfigFactory.createConfig(options); 
+			RestAssured.baseURI = PropertiesFile.getProperty("baseUrl");	
+			return RestAssured.given()
+					.config(config)
+					.filter(new RestAssuredRequestFilter())				
+					.contentType(CONTENT_TYPE)
+					.accept(CONTENT_TYPE);
+		} 
+
 }
